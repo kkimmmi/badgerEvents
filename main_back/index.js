@@ -30,6 +30,10 @@ app.post('/register', async(req, res) => {
     res.send({status:"OK"});
 })
 
+app.get('/users', async (req, res) => {
+    const allUsers = await user.find();
+    res.send(allUsers);
+});
 
 
 const courses = [

@@ -45,7 +45,7 @@ function App() {
   }, []);
 
   const load = () => {
-    fetch("http://localhost:5001/api/courses/1")
+    fetch("http://localhost:5001/users")
     .then(res => res.json())
     .then(data => console.log(data))
   }
