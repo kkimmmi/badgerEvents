@@ -19,15 +19,14 @@ const user = mongosse.model("userInfo");
 
 app.post('/register', async(req, res) => {
     const uname = req.body.name;
-    const upassward = req.body.passward;
+    const upassword = req.body.password;
     const uemail = req.body.email;
     await user.create({
         name: uname,
-        passward: upassward,
+        password: upassword,
         email: uemail,
 
     });
-
     res.send({status:"OK"});
 })
 
