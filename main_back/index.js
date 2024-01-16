@@ -11,6 +11,28 @@ mongosse.connect(mongoUrl,{
     useNewUrlParser:true
 }).then(()=>{console.log("connected");
 }).catch(e=>console.log(e))
+
+
+require('./userInfoSchema');
+
+const user = mongosse.model("userInfo");
+
+app.post('/register', async(req, res) => {
+    const uname = req.body.name;
+    const upassward = req.body.passward;
+    const uemail = req.body.email;
+    await user.create({
+        name: uname,
+        passward: upassward,
+        email: uemail,
+
+    });
+
+    res.send({status:"OK"});
+})
+
+
+
 const courses = [
     {id: 1, name: 'course1'},
     {id: 2, name: 'course2'},
