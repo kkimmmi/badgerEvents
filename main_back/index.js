@@ -1,12 +1,16 @@
-
-
 const express = require('express')
 const cors = require('cors')
 const app = express();
-
+const mongosse = require('mongoose');
 app.use(express.json())
 app.use(cors())
 
+const mongoUrl = "mongodb+srv://silvgab:E0hrR58G6SP5FxIJ@badgerevents.iddi8iy.mongodb.net/?retryWrites=true&w=majority"
+
+mongosse.connect(mongoUrl,{
+    useNewUrlParser:true
+}).then(()=>{console.log("connected");
+}).catch(e=>console.log(e))
 const courses = [
     {id: 1, name: 'course1'},
     {id: 2, name: 'course2'},
@@ -27,7 +31,6 @@ app.get('/api/courses/:id', (req, res) => {
     const course = courses.find(c => c.id === parseInt(req.params.id))
     if (!course) {
         res.status(404).send('The course with the given ID was not found')
-
     } 
     res.send(course)
 })
