@@ -1,13 +1,24 @@
 import axios from "axios"
+import { useNavigate } from "react-router-dom";
+
+
 
 const BadgerLogin = (props) => {
+    const navigate = useNavigate();
     const onSubmit = (e) => {
       e.preventDefault();
       const { value } = e.target[0];
       axios.post("http://localhost:3001/authenticate", {username: value})
-      .then((r) => props.onAuth({...r.data, secret: value}))
+      .then((r) => {
+        props.onAuth({...r.data, secret: value})
+        navigate('/chat')
+      })
       .catch((e) => console.log("Auth Error", e))
     };
+
+
+
+
   
     return (
       <div className="background">

@@ -29,6 +29,7 @@ function BadgerLayout(props) {
                     </Nav>
                 </Container>
             </Navbar>
+            <Outlet/>
             <div style ={{margin:'1rem'}}>
             </div>
         </div>
