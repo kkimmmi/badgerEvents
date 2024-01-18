@@ -1,6 +1,6 @@
 import axios from "axios"
 
-const AuthPage = (props) => {
+const BadgerLogin = (props) => {
     const onSubmit = (e) => {
       e.preventDefault();
       const { value } = e.target[0];
@@ -28,4 +28,4 @@ const AuthPage = (props) => {
     );
   };
   
-  export default AuthPage;
+  export default BadgerLogin;

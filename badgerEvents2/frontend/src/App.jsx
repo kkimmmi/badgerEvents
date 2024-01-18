@@ -2,17 +2,21 @@ import { useState } from "react";
 
 import "./App.css";
 
-import AuthPage from "./AuthPage";
-import ChatsPage from "./ChatsPage";
+import LoginPage from "./components/auth/BadgerLogin";
+import ChatsPage from "./components/content/BadgerChat";
+
+import BadgerApp from "./components/structural/BadgerApp"
+
 
 function App() {
-  const [user, setUser] = useState(undefined);
+  /*const [user, setUser] = useState(undefined);
 
   if (!user) {
-    return <AuthPage onAuth={(user) => setUser(user)} />;
+    return <LoginPage onAuth={(user) => setUser(user)} />;
   } else {
     return <ChatsPage user={user} />;
-  }
+  }*/
+  return <BadgerApp/>
 }
 
 export default App;

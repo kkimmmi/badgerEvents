@@ -1,6 +1,6 @@
 import { PrettyChatWindow } from "react-chat-engine-pretty";
 
-const ChatsPage = (props) => {
+const BadgerChat = (props) => {
   return (
     <div className="background">
       <PrettyChatWindow
@@ -12,4 +12,4 @@ const ChatsPage = (props) => {
   );
 };
 
-export default ChatsPage;
+export default BadgerChat;
