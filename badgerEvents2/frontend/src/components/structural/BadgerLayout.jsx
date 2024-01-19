@@ -1,13 +1,13 @@
 import React, { useContext, useState, useEffect } from "react"
 import { Container, Nav, Navbar, NavDropdown } from "react-bootstrap"
 import { Link, Outlet, useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 
 import crest from '../../assets/uw-crest.svg'
 
 function BadgerLayout(props) {
     const navigate = useNavigate();
-useEffect(() =>{},[
-    props.user])
+
 
     return (
         <div>
@@ -31,7 +31,10 @@ useEffect(() =>{},[
                                 <Nav.Link as={Link} to="register">Register</Nav.Link>
                             </>
                         ) : (
+                            <>
                             <Nav.Link as={Link} to="chat">Chat</Nav.Link>
+                            <Nav.Link as={Link} to="logout">Logout</Nav.Link>
+                            </>
                         )}
                     </Nav>
                 </Container>
