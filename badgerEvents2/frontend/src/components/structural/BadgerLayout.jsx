@@ -1,7 +1,6 @@
 import React, { useContext, useState, useEffect } from "react"
 import { Container, Nav, Navbar, NavDropdown } from "react-bootstrap"
 import { Link, Outlet, useNavigate } from "react-router-dom"
-import { useNavigate } from "react-router-dom";
 
 import crest from '../../assets/uw-crest.svg'
 

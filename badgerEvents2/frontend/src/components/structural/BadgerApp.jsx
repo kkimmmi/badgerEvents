@@ -11,7 +11,7 @@ import BadgerHome from '../content/BadgerHome'
 
 function BadgerApp() {
     const [user, setUser] = useState(undefined);
-    const [password, setPassword] = useState(undefined);
+   
   /*if (!user) {
     return <LoginPage onAuth={(user) => setUser(user)} />;
   } else {

@@ -17,7 +17,8 @@ const BadgerLogin = (props) => {
       const { value } = nameRef.current.value
       axios.post("http://localhost:3001/authenticate", {username: nameRef.current.value, secret: passwardRef.current.value})
       .then((r) => {
-        props.onAuth({...r.data, secret: passwardRef.current.value})
+        console.log(r.data);
+        props.onAuth({...r.data, secret:passwardRef.current.value})
         navigate('/')
       })
       .catch((e) => console.log("Auth Error", e))
