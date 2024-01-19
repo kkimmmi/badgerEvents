@@ -11,15 +11,11 @@ const BadgerLogin = (props) => {
       axios.post("http://localhost:3001/authenticate", {username: value})
       .then((r) => {
         props.onAuth({...r.data, secret: value})
-        navigate('/chat')
+        navigate('/')
       })
       .catch((e) => console.log("Auth Error", e))
     };
 
-
-
-
-  
     return (
       <div className="background">
         <form onSubmit={onSubmit} className="form-card">

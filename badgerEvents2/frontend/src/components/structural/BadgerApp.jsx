@@ -19,14 +19,14 @@ function BadgerApp() {
     return (
         <BrowserRouter>
             <Routes>
-                <Route path="/" element={<BadgerLayout/>}>
+                <Route path="/" element={<BadgerLayout user ={user}/>}>
                     <Route index element={<BadgerHome/>}/>
                     <Route path="/login" element={<BadgerLogin onAuth={(user) => setUser(user)}/>}></Route>
-                    <Route path="/register" element={<BadgerRegister />}></Route>
+                    <Route path="/register" element={<BadgerRegister />}></Route> 
                     <Route path="/chat" element={<BadgerChat user={user}/>}></Route>
+    
                 </Route>
             </Routes>
-        
         </BrowserRouter>
     )
 

@@ -6,7 +6,7 @@ import LoginPage from "./components/auth/BadgerLogin";
 import ChatsPage from "./components/content/BadgerChat";
 
 import BadgerApp from "./components/structural/BadgerApp"
-
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   /*const [user, setUser] = useState(undefined);
