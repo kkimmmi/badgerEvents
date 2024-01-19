@@ -28,6 +28,8 @@ function BadgerHome() {
                     const link = item.querySelector("link")?.textContent || "";
                     const guid = item.querySelector("guid")?.textContent || "";
 
+                    
+
                     return {
                         title,
                         description,
