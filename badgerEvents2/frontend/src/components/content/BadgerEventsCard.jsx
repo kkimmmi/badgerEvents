@@ -4,7 +4,7 @@ import axios from 'axios';
 
 const BadgerEventsCard = (props) => {
 
-  function joinIn() {
+  /*function joinIn() {
 
     axios.post("http://localhost:3001/creatChat", {username: "woojin", title: props.title})
       .then((r) => {
@@ -12,13 +12,22 @@ const BadgerEventsCard = (props) => {
       })
       .catch((e) => console.log("Auth Error", e))
 
+  }*/
 
+  const joinIn = (e) => {
+    e.preventDefault();
+    axios.post("http://localhost:3001/creatChat", {username: "woojin", title: props.title})
+      .then((r) => {
+        console.log(r.data);
+      })
+      .catch((e) => console.log("Auth Error", e))
+    
   }
 
   return (
     <Card style={{ margin: '0.5rem', padding: '0.5rem' }}>
       <h2>{props.title}</h2>
-      <Button onClick={() => {joinIn()}}>Join in</Button>
+      <Button onClick={joinIn}>Join in</Button>
     </Card>
   );
 };
