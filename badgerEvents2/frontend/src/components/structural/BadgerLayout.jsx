@@ -31,7 +31,8 @@ function BadgerLayout(props) {
                             </>
                         ) : (
                             <>
-                            <Nav.Link as={Link} to="chat">Chat</Nav.Link>
+                            <Nav.Link as={Link} to="events-List">Event-Lists</Nav.Link>
+                            <Nav.Link as={Link} to="chat">My Chat</Nav.Link>
                             <Nav.Link as={Link} to="logout">Logout</Nav.Link>
                             </>
                         )}

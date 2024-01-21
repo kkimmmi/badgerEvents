@@ -32,14 +32,16 @@ app.post("/authenticate", async (req, res) => {
 
 app.post("/creatChat", async(req, res) => {
 
-  const {username, title} = req.body
+  const {username, title, secret} = req.body
   const normalizedTitle = title.trim()
   try {
     const r = await axios.put(
       "https://api.chatengine.io/chats/",
       {"title": normalizedTitle},
-      {headers: {"project-id": "374509a7-b480-47c6-952a-27994cc06678", "user-name": username, "user-secret": username}}
+      {headers: {"project-id": "374509a7-b480-47c6-952a-27994cc06678", "user-name": username, "user-secret": secret}}
     )
+
+    console.log(r.data)
     return res.status(r.status).json(r.data)
   } catch (e) {
     if (e.response) {
