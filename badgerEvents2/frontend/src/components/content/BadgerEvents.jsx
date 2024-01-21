@@ -53,6 +53,7 @@ const BadgerEvents= (props) => {
         };
 
         fetchRssData();
+        console.log(props, "empty")
     }, []);
 
 
@@ -68,7 +69,11 @@ const BadgerEvents= (props) => {
                     xl={4}
                     key={index}
                 >
-                    <BadgerEventsCard {...item} user ={props.user}/>
+                    <BadgerEventsCard 
+                        {...item}
+                        username = {props.user?.username || ""}
+                        secret = {props.user?.secret || ""} 
+                    />
                 </Col>
             ))}
             </Container>

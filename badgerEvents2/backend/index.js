@@ -30,18 +30,18 @@ app.post("/authenticate", async (req, res) => {
   }
 });
 
+
 app.post("/creatChat", async(req, res) => {
 
-  const {username, title, secret} = req.body
+  const {username, title} = req.body
   const normalizedTitle = title.trim()
+  //const chatid = "";
   try {
     const r = await axios.put(
       "https://api.chatengine.io/chats/",
       {"title": normalizedTitle},
-      {headers: {"project-id": "374509a7-b480-47c6-952a-27994cc06678", "user-name": username, "user-secret": secret}}
+      {headers: {"project-id": "374509a7-b480-47c6-952a-27994cc06678", "user-name": username, "user-secret": username}}
     )
-
-    console.log(r.data)
     return res.status(r.status).json(r.data)
   } catch (e) {
     if (e.response) {
@@ -52,6 +52,28 @@ app.post("/creatChat", async(req, res) => {
         return res.status(500).json({ error: "Internal Server Error" });
       }
   }
+})
+
+app.post("/joinChat", async(req, res) => {
+
+  const {chatId, username, secret} = req.body
+  try {
+    const r = await axios.post(
+      `https://api.chatengine.io/chats/${chatId}/people/`,
+      {"username": username},
+      {headers: {"project-id": "374509a7-b480-47c6-952a-27994cc06678", "user-name": "woojin", "user-secret": "woojin"}}      
+    )
+    return res.status(r.status).json(r.data)
+  } catch (e) {
+    if (e.response) {
+      // Handle the error if 'e.response' exists
+      return res.status(e.response.status).json(e.response.data);
+    } else {
+      // Handle the error if 'e.response' is undefined
+      return res.status(500).json({ error: "Internal Server Error" });
+    }
+  }
+
 })
 
 app.listen(3001);
