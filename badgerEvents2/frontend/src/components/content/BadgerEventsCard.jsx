@@ -6,6 +6,7 @@ import {useState, useEffect} from 'react'
 const BadgerEventsCard = (props) => {
 
   const [chatId, setChatId] = useState("");
+  const [shouldJoin, setShouldJoin] = useState(false);
 
   /*function joinIn() {
 
@@ -22,7 +23,6 @@ const BadgerEventsCard = (props) => {
     try {
       const r = await axios.post("http://localhost:3001/checkChat", {username: "woojin", secret: "woojin"});
       console.log(r.data)
-      console.log(props.title)
 
       const normalizedTitle = props.title.trim()
 
@@ -31,7 +31,7 @@ const BadgerEventsCard = (props) => {
 
       if (chatExists) {
         setChatId(chatExists.id)
-        joinIn();
+        setShouldJoin(true)
       }else {
         createChat();
       }
@@ -46,6 +46,7 @@ const BadgerEventsCard = (props) => {
       const r = await axios.post("http://localhost:3001/creatChat", {username: "woojin", title: props.title});
       console.log(r.data)
       setChatId(r.data.id)
+      setShouldJoin(true)
     } catch (error) {
       console.log("Auth Error", error)
     }
@@ -62,10 +63,10 @@ const BadgerEventsCard = (props) => {
   }
 
   useEffect(() => {
-    if (chatId) {
+    if (chatId && shouldJoin) {
       joinIn();
     }
-  }, [chatId])
+  }, [chatId, shouldJoin])
 
   const joinIn = async () => {
     console.log(chatId, "hey")
@@ -76,7 +77,8 @@ const BadgerEventsCard = (props) => {
 
     try {
       const r = await axios.post("http://localhost:3001/joinChat", {chatId: chatId, username: props.username, secret: props.secret});
-      console.log("join data ", r.data)
+      console.log("join success ", r.data)
+      setShouldJoin(false)
     } catch (error) {
       console.log("joinIn Error", error)
     }
