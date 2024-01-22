@@ -63,6 +63,7 @@ app.post("/joinChat", async(req, res) => {
       {"username": username},
       {headers: {"project-id": "374509a7-b480-47c6-952a-27994cc06678", "user-name": "woojin", "user-secret": "woojin"}}      
     )
+    
     return res.status(r.status).json(r.data)
   } catch (e) {
     if (e.response) {
@@ -74,6 +75,26 @@ app.post("/joinChat", async(req, res) => {
     }
   }
 
+})
+
+app.post("/checkChat", async(req, res) => {
+  const {username, secret} = req.body
+  try {
+    const r = await axios.get(
+      "https://api.chatengine.io/chats/",
+      {headers: {"project-id": "374509a7-b480-47c6-952a-27994cc06678", "user-name": "woojin", "user-secret": "woojin"}}      
+    )
+    console.log("is this safely done?")
+    return res.status(r.status).json(r.data)
+  } catch (e) {
+    if (e.response) {
+      // Handle the error if 'e.response' exists
+      return res.status(e.response.status).json(e.response.data);
+    } else {
+      // Handle the error if 'e.response' is undefined
+      return res.status(500).json({ error: "Internal Server Error" });
+    }
+  }
 })
 
 app.listen(3001);

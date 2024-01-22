@@ -17,8 +17,31 @@ const BadgerEventsCard = (props) => {
 
   }*/
 
+  const checkChat = async (e) => {
+    //e.preventDefault();
+    try {
+      const r = await axios.post("http://localhost:3001/checkChat", {username: "woojin", secret: "woojin"});
+      console.log(r.data)
+      console.log(props.title)
+
+      const normalizedTitle = props.title.trim()
+
+      const chatExists = r.data.find(chat => chat.title == normalizedTitle)
+      console.log("chatExists ", chatExists)
+
+      if (chatExists) {
+        setChatId(chatExists.id)
+        joinIn();
+      }else {
+        createChat();
+      }
+    } catch (error) {
+      console.log("checkChat Error", error)
+    }
+  }
+
   const createChat = async (e) => {
-    e.preventDefault();
+    //e.preventDefault();
     try {
       const r = await axios.post("http://localhost:3001/creatChat", {username: "woojin", title: props.title});
       console.log(r.data)
@@ -53,7 +76,7 @@ const BadgerEventsCard = (props) => {
 
     try {
       const r = await axios.post("http://localhost:3001/joinChat", {chatId: chatId, username: props.username, secret: props.secret});
-      console.log(r.data)
+      console.log("join data ", r.data)
     } catch (error) {
       console.log("joinIn Error", error)
     }
@@ -63,7 +86,7 @@ const BadgerEventsCard = (props) => {
   return (
     <Card style={{ margin: '0.5rem', padding: '0.5rem' }}>
       <h2>{props.title}</h2>
-      <Button onClick={createChat}>Join in</Button>
+      <Button onClick={checkChat}>Join in</Button>
     </Card>
   );
 };
