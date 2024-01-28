@@ -15,13 +15,28 @@ const BadgerLogin = (props) => {
     }
       e.preventDefault();
       const { value } = nameRef.current.value
-      axios.post("http://localhost:3001/authenticate", {username: nameRef.current.value, secret: passwardRef.current.value})
+      axios.post("http://localhost:3001/logIn", {username: nameRef.current.value, secret: passwardRef.current.value})
       .then((r) => {
+        if (r.status == 200) {
+          console.log(r.data);
+          props.onAuth({...r.data, secret:passwardRef.current.value})
+          navigate('/')
+          
+        }
+        /*
         console.log(r.data);
         props.onAuth({...r.data, secret:passwardRef.current.value})
-        navigate('/')
+        navigate('/')*/
       })
-      .catch((e) => console.log("Auth Error", e))
+      .catch((error) => {
+        if (error.response) {
+          console.log("Login Error", error);
+        }
+
+        if (error.response.status == 403) {
+          alert("You provided wrong username or password!");
+        }
+      })
     };
 
     return (

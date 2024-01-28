@@ -6,16 +6,17 @@ const app = express();
 app.use(express.json());
 app.use(cors({ origin: true }));
 
-app.post("/authenticate", async (req, res) => {
+app.post("/logIn", async (req, res) => {
   //const { username } = req.body.username;
   //const { secret } = req.body.secret;
   
   const { username, secret } = req.body;
   try {
-    const r = await axios.put(
-        "https://api.chatengine.io/users/",
-        {username: username, secret: secret},
-        {headers: {"private-key": "36e0df4b-0edc-44fe-b3fc-0fad45e5cdad"}}
+    const r = await axios.get(
+        "https://api.chatengine.io/users/me",
+        //{username: username, secret: secret},
+        //{headers: {"private-key": "36e0df4b-0edc-44fe-b3fc-0fad45e5cdad"},
+        {headers: {"project-id": "374509a7-b480-47c6-952a-27994cc06678", "user-name": username, "user-secret": secret}}
 
     )
     return res.status(r.status).json(r.data)
