@@ -31,6 +31,30 @@ app.post("/logIn", async (req, res) => {
   }
 });
 
+app.post("/register", async(req, res) => {
+
+  const {username, secret, first, last} = req.body;
+  
+  try {
+    const r = await axios.post(
+      "https://api.chatengine.io/users/",
+      {"username": username, "first_name": first, "last_name": last, "secret": secret},
+      {headers: {"private-key": "36e0df4b-0edc-44fe-b3fc-0fad45e5cdad"}},
+    )
+    return res.status(r.status).json(r.data)
+  } catch (e) {
+    if (e.response) {
+      // Handle the error if 'e.response' exists
+      return res.status(e.response.status).json(e.response.data);
+    } else {
+      // Handle the error if 'e.response' is undefined
+      return res.status(500).json({ error: "Internal Server Error" });
+    }
+  }
+
+
+})
+
 
 app.post("/creatChat", async(req, res) => {
 

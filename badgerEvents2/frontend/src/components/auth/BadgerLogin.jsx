@@ -12,9 +12,9 @@ const BadgerLogin = (props) => {
       if(nameRef.current.value ==='' ||passwardRef.current.value ===''){
         alert("You must provide both a username and password!");
         return;
-    }
+      }
       e.preventDefault();
-      const { value } = nameRef.current.value
+      
       axios.post("http://localhost:3001/logIn", {username: nameRef.current.value, secret: passwardRef.current.value})
       .then((r) => {
         if (r.status == 200) {
