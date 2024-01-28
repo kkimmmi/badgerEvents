@@ -4,6 +4,8 @@ import { useState, useEffect } from 'react';
 import BadgerEventsCard from './BadgerEventsCard'
 import { Row, Col, Container, Pagination, Form, Button } from "react-bootstrap";
 
+import './BadgerEventsCard.css'
+
 
 const BadgerEvents= (props) => {
 
@@ -57,25 +59,29 @@ const BadgerEvents= (props) => {
     }, []);
 
 
+
     return (
         <>
             <h1>RSS Data</h1>
-            <Container>
-            {rssData.map((item, index) => (
-                <Col
-                    xs={12}
-                    md={6}
-                    lg={6}
-                    xl={4}
-                    key={index}
-                >
-                    <BadgerEventsCard 
-                        {...item}
-                        username = {props.user?.username || ""}
-                        secret = {props.user?.secret || ""} 
-                    />
-                </Col>
-            ))}
+            <Container className="projcard-container">
+                {rssData.map((item, index) => (
+                    <Col
+                        /*xs={12}
+                        md={6}
+                        lg={6}
+                        xl={4}*/
+                        key={index}
+                    >
+                        <BadgerEventsCard 
+                            {...item}
+                            username = {props.user?.username || ""}
+                            secret = {props.user?.secret || ""} 
+                        />
+                    </Col>
+                ))
+                    /*<BadgerEventsCard
+                    />*/
+                }
             </Container>
         </>
     );

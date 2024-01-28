@@ -3,23 +3,14 @@ import { Card, Button } from 'react-bootstrap';
 import axios from 'axios';
 import {useState, useEffect} from 'react'
 
+import './BadgerEventsCard.css'
+
 const BadgerEventsCard = (props) => {
 
   const [chatId, setChatId] = useState("");
   const [shouldJoin, setShouldJoin] = useState(false);
 
-  /*function joinIn() {
-
-    axios.post("http://localhost:3001/creatChat", {username: "woojin", title: props.title})
-      .then((r) => {
-        console.log(r.data);
-      })
-      .catch((e) => console.log("Auth Error", e))
-
-  }*/
-
   const checkChat = async (e) => {
-    //e.preventDefault();
     try {
       const r = await axios.post("http://localhost:3001/checkChat", {username: "woojin", secret: "woojin"});
       console.log(r.data)
@@ -50,16 +41,6 @@ const BadgerEventsCard = (props) => {
     } catch (error) {
       console.log("Auth Error", error)
     }
-
-    /*axios.post("http://localhost:3001/creatChat", {username: "woojin", title: props.title})
-      .then((r) => {
-        console.log(r.data);
-        setChatId(r.data.id)
-        joinIn()
-      })
-      .catch((e) => console.log("Auth Error", e))
-    
-      joinIn()*/
   }
 
   useEffect(() => {
@@ -86,10 +67,36 @@ const BadgerEventsCard = (props) => {
   }
 
   return (
-    <Card style={{ margin: '0.5rem', padding: '0.5rem' }}>
+
+   
+      <div className="projcard projcard-blue">
+          <div className="projcard-innerbox">
+            <img className="projcard-img" src="https://picsum.photos/800/600?image=1041"/>
+            <div className="projcard-textbox">
+              <div className="projcard-title">{props.title}</div>
+              <div className="projcard-subtitle">{props.pubDate}</div>
+              <div className="projcard-bar"></div>
+              <div className="projcard-description">{props.description}</div>
+              <div className="projcard-tagbox">
+                <span className="projcard-tag">tag</span>
+              </div>
+            </div>
+          </div>
+      </div>
+   
+  
+
+
+
+    /*<Card style={{ margin: '0.5rem', padding: '0.5rem' }}>
       <h2>{props.title}</h2>
+      <p>{props.description}</p>
+      <p>{props.date}</p>
+      <p>{props.pubDate}</p>
+      <p>{props.link}</p>
+      <p>{props.guid}</p>
       <Button onClick={checkChat}>Join in</Button>
-    </Card>
+    </Card>*/
   );
 };
 
