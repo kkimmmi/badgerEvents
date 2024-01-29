@@ -9,6 +9,8 @@ const BadgerEventsCard = (props) => {
 
   const [chatId, setChatId] = useState("");
   const [shouldJoin, setShouldJoin] = useState(false);
+  const [color, setColor] = useState("");
+
 
   const checkChat = async (e) => {
     try {
@@ -44,6 +46,15 @@ const BadgerEventsCard = (props) => {
   }
 
   useEffect(() => {
+
+    const selectRandomColor = () => {
+      const colors = ["blue", "red", "green", "yellow"];
+      return colors[Math.floor(Math.random() * colors.length)];
+    }
+
+    setColor(selectRandomColor());
+
+
     if (chatId && shouldJoin) {
       joinIn();
     }
@@ -66,12 +77,25 @@ const BadgerEventsCard = (props) => {
 
   }
 
+  const getImageSource = (color) => {
+    switch (color) {
+      case "blue":
+        return "https://picsum.photos/800/600?image=1041";
+      case "red":
+        return "https://picsum.photos/800/600?image=1080";
+      case "green":
+        return "https://picsum.photos/800/600?image=1039";
+      case "yellow":
+        return "https://picsum.photos/800/600?image=943";
+    }
+  }
+
   return (
 
    
-      <div className="projcard projcard-blue">
+      <div className={`projcard projcard-${color}`}>
           <div className="projcard-innerbox">
-            <img className="projcard-img" src="https://picsum.photos/800/600?image=1041"/>
+            <img className="projcard-img" src={getImageSource(color)}/>
             <div className="projcard-textbox">
               <div className="projcard-title">{props.title}</div>
               <div className="projcard-subtitle">{props.pubDate}</div>
@@ -85,9 +109,6 @@ const BadgerEventsCard = (props) => {
       </div>
    
   
-
-
-
     /*<Card style={{ margin: '0.5rem', padding: '0.5rem' }}>
       <h2>{props.title}</h2>
       <p>{props.description}</p>

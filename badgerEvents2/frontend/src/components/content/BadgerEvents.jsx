@@ -62,8 +62,7 @@ const BadgerEvents= (props) => {
 
     return (
         <>
-            <h1>RSS Data</h1>
-            <Container className="projcard-container">
+            <div className="projcard-container">
                 {rssData.map((item, index) => (
                     <Col
                         /*xs={12}
@@ -82,7 +81,7 @@ const BadgerEvents= (props) => {
                     /*<BadgerEventsCard
                     />*/
                 }
-            </Container>
+            </div>
         </>
     );
 };
