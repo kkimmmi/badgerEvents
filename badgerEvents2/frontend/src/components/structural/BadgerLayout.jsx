@@ -8,18 +8,17 @@ function BadgerLayout(props) {
     const navigate = useNavigate();
 
 
+    const changeAuth = () => {
+        alert("You have been logged out");
+        navigate('/');
+        props.changeAuth();
+    };
+
     return (
         <div>
             <Navbar bg="dark" variant="dark">
                 <Container>
                     <Navbar.Brand as={Link} to="/">
-                        <img
-                            alt="Badger Logo"
-                            src={crest}
-                            width="30"
-                            height="30"
-                            className="d-inline-block align-top"
-                        />{' '}
                         BadgerEvent
                     </Navbar.Brand>
                     <Nav className="me-auto">
@@ -33,7 +32,7 @@ function BadgerLayout(props) {
                             <>
                             <Nav.Link as={Link} to="events-List">Event-Lists</Nav.Link>
                             <Nav.Link as={Link} to="chat">My Chat</Nav.Link>
-                            <Nav.Link as={Link} to="logout">Logout</Nav.Link>
+                            <Nav.Link onClick={changeAuth}>Logout</Nav.Link>
                             </>
                         )}
                     </Nav>

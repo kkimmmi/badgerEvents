@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
-
+import { Link, Outlet, useNavigate } from "react-router-dom"
 
 import BadgerLayout from './BadgerLayout'
 import BadgerLogin from '../auth/BadgerLogin'
@@ -11,7 +11,8 @@ import BadgerHome from '../content/BadgerHome'
 import BadgerEvents from '../content/BadgerEvents'
 function BadgerApp() {
     const [user, setUser] = useState(undefined);
-   
+
+
   /*if (!user) {
     return <LoginPage onAuth={(user) => setUser(user)} />;
   } else {
@@ -30,7 +31,7 @@ function BadgerApp() {
     return (
         <BrowserRouter>
             <Routes>
-                <Route path="/" element={<BadgerLayout user ={user}/>}>
+                <Route path="/" element={<BadgerLayout user ={user} changeAuth = {changeAuth}/>}>
                     <Route index element={<BadgerHome />}/>
                     <Route path="/login" element={<BadgerLogin onAuth={(user) => setUser(user)}/>}></Route>
                     <Route path="/register" element={<BadgerRegister />}></Route> 

@@ -20,7 +20,7 @@ const BadgerEvents= (props) => {
         const fetchRssData = async () => {
             try {
                 const response = await fetch(
-                    "https://corsproxy.io/?https%3A%2F%2Ftoday.wisc.edu%2Fevents.rss2?refresh=false"
+                    "https://corsproxy.io/?https%3A%2F%2Ftoday.wisc.edu%2Fevents.rss2?refresh=true"
                 );
 
                 if (!response.ok) {
